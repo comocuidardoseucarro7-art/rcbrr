@@ -1,0 +1,430 @@
+/* --- GLOBAL & BACKGROUND --- */
+:root {
+    --christmas-red: #D42426;
+    --christmas-green: #165B33;
+    --gold: #FFD700;
+    --snow-white: #F0F8FF;
+    --gingerbread: #8B4513;
+    --cream: #FFF8E7;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: radial-gradient(circle at center, #500000, #2b0000);
+    color: #333;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Snow Effect */
+.snow-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    background-image:
+        radial-gradient(4px 4px at 100px 50px, #fff, transparent),
+        radial-gradient(6px 6px at 200px 150px, #fff, transparent),
+        radial-gradient(3px 3px at 300px 250px, #fff, transparent);
+    background-size: 550px 550px;
+    animation: snow 10s linear infinite;
+    opacity: 0.6;
+}
+
+@keyframes snow {
+    100% {
+        background-position: 550px 550px, 400px 400px, 300px 300px;
+    }
+}
+
+.main-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* --- HEADER --- */
+.ornate-header {
+    text-align: center;
+    position: relative;
+    padding: 40px 20px;
+    background: url('https://www.transparenttextures.com/patterns/christmas-pattern.png'), linear-gradient(to bottom, #1a472a, #0f2b19);
+    border-radius: 20px;
+    border: 4px solid var(--gold);
+    box-shadow: 0 0 20px var(--gold), inset 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.santa-mascot {
+    font-size: 4rem;
+    position: absolute;
+    top: -30px;
+    right: 20px;
+    animation: santaPeek 3s infinite ease-in-out;
+}
+
+@keyframes santaPeek {
+
+    0%,
+    100% {
+        transform: rotate(-5deg) translateY(0);
+    }
+
+    50% {
+        transform: rotate(5deg) translateY(-10px);
+    }
+}
+
+.title-3d {
+    font-family: 'Mountains of Christmas', cursive;
+    font-size: 3rem;
+    color: #fff;
+    text-shadow:
+        3px 3px 0 var(--christmas-red),
+        -1px -1px 0 var(--christmas-red),
+        1px -1px 0 var(--christmas-red),
+        -1px 1px 0 var(--christmas-red),
+        1px 1px 0 var(--christmas-red);
+    margin: 0;
+    line-height: 1.2;
+}
+
+.title-3d span {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+    display: block;
+    margin-top: 10px;
+    text-shadow: none;
+    font-weight: 600;
+}
+
+/* --- MAIN CONTENT (GINGERBREAD HOUSE) --- */
+.gingerbread-house {
+    background: var(--gingerbread);
+    border: 8px solid var(--cream);
+    border-radius: 30px;
+    padding: 30px;
+    position: relative;
+    box-shadow:
+        0 10px 0 #5d2e0c,
+        0 20px 40px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+}
+
+.gingerbread-house::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background:
+        radial-gradient(circle at 10px 10px, var(--cream) 10px, transparent 11px) 0 0,
+        radial-gradient(circle at 30px 10px, var(--cream) 10px, transparent 11px) 20px 0;
+    background-size: 40px 20px;
+    background-repeat: repeat-x;
+}
+
+.fireplace-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(255, 100, 0, 0.2), transparent 70%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.question-box {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 1;
+    border: 2px solid var(--gold);
+}
+
+.question-box h2 {
+    color: var(--christmas-red);
+    margin: 0;
+    font-size: 1.4rem;
+}
+
+/* Options (Gift Tags) */
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    position: relative;
+    z-index: 1;
+}
+
+.option-btn {
+    background: var(--snow-white);
+    border: none;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    cursor: pointer;
+    text-align: left;
+    position: relative;
+    clip-path: polygon(10% 0, 100% 0, 100% 100%, 10% 100%, 0 50%);
+    margin-left: 20px;
+    transition: transform 0.2s, background 0.2s;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.option-btn::before {
+    content: '●';
+    color: var(--christmas-red);
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+}
+
+.option-btn:hover {
+    transform: scale(1.02) translateX(5px);
+    background: #fff;
+}
+
+.option-btn.correct {
+    background: #d4edda;
+    border: 2px solid #28a745;
+    box-shadow: 0 0 15px #28a745;
+}
+
+.option-btn.wrong {
+    background: #f8d7da;
+    border: 2px solid #dc3545;
+    opacity: 0.7;
+}
+
+/* Feedback */
+.feedback-bubble {
+    background: var(--cream);
+    border: 2px solid var(--gold);
+    border-radius: 15px;
+    padding: 15px;
+    margin-top: 20px;
+    display: none;
+    /* Hidden by default */
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    z-index: 1;
+    animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.thermometer-icon {
+    font-size: 2rem;
+}
+
+.next-btn {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    background: linear-gradient(to right, var(--christmas-red), #b30000);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(212, 36, 38, 0.5);
+    display: none;
+    /* Hidden by default */
+    position: relative;
+    z-index: 1;
+}
+
+/* --- RESULTS SECTION --- */
+.results-dashboard {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    border: 4px solid var(--gold);
+}
+
+.results-dashboard.hidden {
+    display: none;
+}
+
+.results-title {
+    font-family: 'Mountains of Christmas', cursive;
+    font-size: 2.5rem;
+    color: var(--christmas-red);
+    margin-bottom: 30px;
+}
+
+.tiers-container {
+    display: flex;
+    gap: 10px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.tier {
+    flex: 1;
+    min-width: 150px;
+    padding: 15px;
+    border-radius: 10px;
+    background: #f9f9f9;
+    border: 2px solid #eee;
+    opacity: 0.5;
+    transform: scale(0.9);
+    transition: all 0.5s;
+}
+
+.tier.active {
+    opacity: 1;
+    transform: scale(1.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    border-color: var(--gold);
+}
+
+.tier-1.active {
+    background: #ffebee;
+    border-color: #ef5350;
+}
+
+.tier-2.active {
+    background: #fff3e0;
+    border-color: #ffa726;
+}
+
+.tier-3.active {
+    background: #e8f5e9;
+    border-color: #66bb6a;
+}
+
+.tier-icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.tier h3 {
+    font-size: 1rem;
+    margin: 5px 0;
+}
+
+.tier-desc {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* --- FOOTER CTA --- */
+.footer-cta {
+    text-align: center;
+    margin-top: 20px;
+    perspective: 1000px;
+}
+
+.pulsing-btn {
+    display: inline-block;
+    background: linear-gradient(45deg, var(--gold), #ffa000);
+    color: #500000;
+    padding: 20px 40px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 1.2rem;
+    text-decoration: none;
+    box-shadow: 0 0 20px var(--gold);
+    animation: pulseBtn 2s infinite;
+    border: 2px solid #fff;
+    margin-bottom: 30px;
+}
+
+@keyframes pulseBtn {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7);
+    }
+
+    70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 20px rgba(255, 215, 0, 0);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 215, 0, 0);
+    }
+}
+
+.guide-book-3d {
+    width: 150px;
+    height: 200px;
+    background: var(--christmas-red);
+    margin: 0 auto;
+    border-radius: 5px 15px 15px 5px;
+    position: relative;
+    transform: rotateY(-20deg) rotateX(10deg);
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+    display: inline-block;
+}
+
+.book-cover {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    font-family: 'Mountains of Christmas', cursive;
+    font-size: 1.5rem;
+    border: 2px solid var(--gold);
+    border-radius: 5px 15px 15px 5px;
+    background: linear-gradient(135deg, #b30000, #800000);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .title-3d {
+        font-size: 2rem;
+    }
+
+    .santa-mascot {
+        font-size: 3rem;
+    }
+
+    .tiers-container {
+        flex-direction: column;
+    }
+
+    .tier {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
